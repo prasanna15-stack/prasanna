@@ -1,0 +1,278 @@
+
+PYTHON PROGRAMMING LAB
+Program 1
+Write a python program to create a grade calculator.
+Coding
+print("Enter Name ")
+name = input()
+print("Enter Register Number: ")
+reg_number = input()
+print("Enter Marks Obtained in 5 Subjects: ")
+markOne = int(input())
+markTwo = int(input())
+markThree = int(input())
+markFour = int(input())
+markFive = int(input())
+tot = markOne+markTwo+markThree+markFour+markFive
+avg = tot/5
+if avg>=91 and avg<=100:
+ print("Your Grade is A1")
+elif avg>=81 and avg<91:
+ print("Your Grade is A2")
+elif avg>=71 and avg<81:
+ print("Your Grade is B1")
+elif avg>=61 and avg<71:
+ print("Your Grade is B2")
+elif avg>=51 and avg<61:
+ print("Your Grade is C1")
+elif avg>=41 and avg<51:
+ print("Your Grade is C2")
+elif avg>=33 and avg<41:
+ print("Your Grade is D")
+elif avg>=21 and avg<33:
+ print("Your Grade is E1")
+elif avg>=0 and avg<21:
+ print("Your Grade is E2")
+else:
+ print("Invalid Input!"
+Output
+Enter Name
+ARUN
+Enter Register Number:
+22UCIT003
+Enter Marks Obtained in 5 Subjects:
+90
+89
+89
+89
+90
+Your Grade is A2
+Program 2
+Write a python program to display the numbers of series.
+Coding
+print(" Printing Number Series" )
+print("***********************")
+n = int(input("Enter a number: "))
+a = []
+for i in range(1, n + 1):
+ print(i, sep=" ", end=" ")
+ if (i < n):
+ print("+", sep=" ", end=" ")
+ a.append(i)
+print("\n The sum of given number series is : ", sum(a))
+Output
+Printing Number Series
+***********************
+Enter a number: 4
+1 + 2 + 3 + 4
+The sum of given number series is: 10
+Program 3
+Write a python program to implement binary search algorithm.
+Coding
+def binary_search(arr,start,end,target):
+ mid = (start+end)//2
+ if start > end:
+ return -1
+ if arr[mid] < target:
+ return binary_search(arr, mid+1, end, target)
+ elif arr[mid] > target:
+ return binary_search(arr, start, mid-1, target)
+ elif arr[mid] == target:
+ return mid
+arr = [20,30,40,60,80,90]
+print("Enter the number to search: ")
+a = int(input())
+ans = binary_search(arr,0,len(arr)-1 ,a)
+if ans == -1:
+ print("Target Not Found")
+else:
+ print("Target found at index",ans)
+Output
+Enter the number to search:
+30
+Target found at index 1
+Enter the number to search:
+3
+Target Not Found
+Program 4
+Write a python program to check if the given string is pangram or not.
+Coding
+import string
+def ispangram(str):
+ alphabet = "abcdefghijklmnopqrstuvwxyz"
+ for char in alphabet:
+ if char not in str.lower():
+ return False
+ return True
+string = input("Enter String: ")
+if(ispangram(string) == True):
+ print("The Given String is pangram")
+else:
+ print("The Given String is not pangram")
+Enter String: Computer Technology and Information Technology
+The Given String is not pangram
+Enter String: The five boxing wizards jump quickly
+The Given String is pangram
+Program 5
+Write a python program to create a list and perform the following
+methods: 1) insert() 2) remove() 3) append() 4) len() 5) pop() 6) clear()
+Coding
+print("\t\t\t\t\t PROGRAM USING LIST METHODS")
+fruits=['apple', 'orange', 'banana', 'mango']
+print("The items in the list fruits are", fruits)
+length = len(fruits)
+print ("The length of the list is:", length)
+string=input("Enter the item to append into the list:")
+fruits.append(string)
+print("The list after appended is:", fruits)
+string=input("Enter the item to remove from the list:")
+fruits.remove(string)
+print("The list after item removed is:", fruits)
+string=input("Enter the item to insert into the list:")
+fruits.insert(0,string)
+print("The list after item insertion is:", fruits)
+string=input("Enter the item to pop up from the list:")
+popelements=fruits.pop(0)
+print("The popup element is:", popelements)
+print("The list after Popup is:", fruits)
+Output
+PROGRAM USING LIST METHODS
+The items in the list fruits are ['apple', 'orange', 'banana', 'mango']
+The length of the list is: 4
+Enter the item to append into the list: jackfruit
+The list after appended is: ['apple', 'orange', 'banana', 'mango',
+'jackfruit']
+Enter the item to remove from the list: jackfruit
+The list after item removed is: ['apple', 'orange', 'banana', 'mango']
+Enter the item to insert into the list: jackfruit
+The list after item insertion is: ['jackfruit', 'apple', 'orange', 'banana',
+'mango']
+Enter the item to pop up from the list: jackfruit
+The popup element is: jackfruit
+The list after Popup is: ['apple', 'orange', 'banana', 'mango']
+Program 6
+Write a python program to create a list of tuples with the first element
+as the number and second element as the square of the number.
+Coding
+print("List of Tuples")
+def square_of_tuples(n):
+ return [(i, i*i)
+ for i in range(1, n+1)]
+n=int(input("Enter the Number:"))
+result = square_of_tuples(n)
+print(result)
+Output
+List of Tuples
+Enter the Number:6
+[(1, 1), (2, 4), (3, 9), (4, 16), (5, 25), (6, 36)]
+Program 7
+Write a python program to combine two lists into a dictionary.
+Coding
+def lists_to_dictionary(keys, values):
+ return dict(zip(keys, values))
+keys = input("Enter the First list:")
+values = input("Enter the Second list:")
+result = lists_to_dictionary(keys, values)
+print("The Elements present in the Dictionary are:")
+print(result)
+Enter the First list:12345
+Enter the Second list: ABCDE
+The Elements present in the Dictionary are:
+{'1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E'}
+Program 8
+Write a python program to append text to a file.
+Coding
+def appendfile(fname):
+ f=open(fname,"a+")
+ city=input("Enter the name of the city:")
+ f.write(city+'\n')
+ f.close()
+ f=open(fname,'r')
+ print(f.read())
+ f.close()
+file=input("Enter the name of the file:")
+appendfile(file)
+Output
+Enter the name of the file:citydts.txt
+Enter the name of the city: karnataka
+canada
+mumbai
+kerala
+karnataka
+Program 9
+Write a python program to simulate the banking operations using class.
+Coding
+class BankAccount:
+ def __init__(self, account_number, balance):
+ self.account_number = account_number
+ self.balance = balance
+def deposit(self, amount):
+ self.balance += amount
+ print(f"Deposited {amount} rupees.")
+ def withdraw(self, amount):
+ if amount <= self.balance:
+ self.balance -= amount
+ print(f"Withdraw {amount} rupees. ")
+ else:
+ print("Insufficient funds")
+ def display_balance(self):
+ print(f"Account Number: {self.account_number}, Balance:
+{self.balance} rupees")
+# Getting input from the user
+account_number = int(input("Enter account number: "))
+account_name = input("Enter the account holder name: ")
+initial_balance = float(input("Enter initial balance: "))
+account = BankAccount(account_number, initial_balance)
+while True:
+ print("\n1. Deposit\n2. Withdraw\n3. Display Balance\n4. Exit")
+ choice = input("Enter your choice (1/2/3/4): ")
+ if choice == "1":
+ amount = float(input("Enter the amount to deposit: "))
+ account.deposit(amount)
+ elif choice == "2":
+ amount = float(input("Enter the amount to withdraw: "))
+ account.withdraw(amount)
+ elif choice == "3":
+ account.display_balance()
+elif choice == "4":
+ print("Exiting the program")
+ break
+else:
+ print("Invalid choice. Please try again.")
+Output
+Enter account number: 123456
+Enter the account holder name: RAJ
+Enter initial balance: 4000
+1. Deposit
+2. Withdraw
+3. Display Balance
+4. Exit
+Enter your choice (1/2/3/4): 1
+Enter the amount to deposit: 3000
+Deposited 3000.0 rupees.
+1. Deposit
+2. Withdraw
+3. Display Balance
+4. Exit
+Enter your choice (1/2/3/4): 3
+Account Number: 123456, Balance: 7000.0 rupees
+1. Deposit
+2. Withdraw
+3. Display Balance
+4. Exit
+Enter your choice (1/2/3/4): 2
+Enter the amount to withdraw: 2000
+Withdraw 2000.0 rupees.
+17
+1. Deposit
+2. Withdraw
+3. Display Balance
+4. Exit
+Enter your choice (1/2/3/4): 3
+Account Number: 123456, Balance: 5000.0 rupees
+1. Deposit
+2. Withdraw
+3. Display Balance
+4. Exit
+Enter your choice (1/2/3/4): 4
+Exiting the program
