@@ -1,0 +1,104 @@
+PROGRAM 5: FILTER COMMANDS
+AIM:
+To write a shell script to implement the filter command.
+PROGRAM
+echo "FILTER COMMAND"
+echo "******************"
+while :
+do
+echo "1.Search a pattern (grep)"
+echo "2.Replacing the text(tr)"
+echo "3.Extract a column(cut)"
+echo "4.Counting a word(wc)"
+echo "Enter your choice:"
+read ch
+if [ $ch -eq 1 ]
+then
+echo " "
+echo "grep command"
+grep This file1
+elif [ $ch -eq 2 ]
+then
+echo “ ”
+echo "tr command"
+tr "[a-z]" "[A-Z]" <file1
+elif [ $ch -eq 3 ]
+then
+echo " "
+echo "cut command"
+cut -c 1-5 file2
+elif [ $ch -eq 4 ]
+then
+echo " "
+echo "Word count "
+wc file2
+else
+echo "Invalid output"
+fi
+echo "Do you want to continue[y/n]:"
+read s
+if [[ $s == "N" || $s == "n" ]]
+then
+echo "Exited"
+exit
+fi
+done
+OUTPUT
+filter command
+***********
+1.Search a pattern (grep)
+2.Replacing the text (tr)
+3.Extract a column (wt)
+4.Counting a word (wc)
+Enter your choice : 1
+grep command
+This is the text file
+This is the banana
+This is our college
+This is information to all
+This is the text file
+Do you want to continue [Y/N]; Y
+filter command
+***********
+1.Search a pattern (grep)
+2.Replacing the text (tr)
+3.Extract a column (wt)
+4.Counting a word (wc)
+Enter your choice :2
+tr command
+IS TEXT FILE
+TEXT FILE
+THIS IS THE TEXT FILE
+THIS IS THE BANANA
+THIS IS OUR COLLEGE
+WELCOME TO COLLEGE
+THIS IS INFORMATION TO ALL
+THIS IS THE TEXT FILE
+Do you want to continue [Y/N]; y
+filter command
+***********
+1.Search a pattern (grep)
+2.Replacing the text (tr)
+3.Extract a column (wt)
+4.Counting a word (wc)
+Enter your choice: 3
+cut command
+is te
+text
+This
+This
+This
+Welco
+This
+This
+Do you want to continue [Y/N]; y
+filter command
+***********
+1.Search a pattern (grep)
+2.Replacing the text (tr)
+3.Extract a column (wt)
+4.Counting a word (wc)
+Enter your choice: 4
+Word count
+ 9 31 153 file1
+Do you want to continue [Y/N];
