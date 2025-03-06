@@ -1,0 +1,23 @@
+PROGRAM 6:
+AIM:
+To write a shell script to count and reports the occurrence of each word
+in the file using command line arguments.
+PROGRAM:
+if [ $# -ne 1 ];
+then
+echo "USAGE:";
+exit -1
+fi
+filename=$1
+egrep -o "\b[[:alpha:]]+\b" $filename | \
+awk '{ count[$0]++ }
+END {printf("%-14s%s\n","Word","Count") ;
+for(ind in count)
+{ printf("%-14s%d\n", ind,count[ind]); }
+}'
+OUTPUT:
+[tamil@localhost ~]$ sh newpgm66.sh temp1.sh
+Word Count
+Arts 1
+College 2
+Science 1
