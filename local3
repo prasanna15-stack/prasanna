@@ -1,0 +1,116 @@
+
+PROGRAM 3: REDIRECTION AND PIPES COMMAND
+To write a shell script for pipes, redirection and the tee commands.
+PROGRAM :
+echo "REDIRECTION,PIPES,TEE COMMAND"
+echo "***********************************"
+while :
+do
+echo "1.PIPES."
+echo "2.REDIRECTION."
+echo "3.TEE COMMAND."
+echo "Enter your choice"
+read ch
+case $ch in
+1)
+echo "pipes"
+ls |sort
+;;
+2)
+echo "REDIRECTION"
+echo "This is a text file">>file1
+echo "This file is successfully redirected"
+echo "Redirected file"
+cat file1
+;;
+3)
+echo "TEE COMMAND"
+wc file1 |tee file2
+echo "Content of the file after implementing tee"
+cat file2
+;;
+*)
+echo "Invaild Output"
+;;
+esac
+echo "Do you want to continue[y/n]:"
+read s
+if [[ $s == "N" || $s == "n" ]]
+then
+echo "Exited"
+exit
+fi
+done
+OUTPUT:
+REDIRECTION,PIPES,TEE COMMAND
+**********
+1.pipes
+2.Redirection
+3.TEE command
+Enter your choice : 1
+pipes
+eng.sh
+file
+file1
+file1.sh
+file2
+filepgm2.sh
+internal10.sh
+new_directory
+newfile1.sh
+newpgm1.sh
+newpgm4.sh
+newpgm5
+newpgm5.sh
+newpgm6.sh
+newprogram6.sh
+perl5
+pgm10.sh
+pgm1.sh
+PGM2.SH
+pgm3.sh
+pgm4.sh
+pgm5.sh
+pgm66.sh
+pgm6.sh
+pgm7.sh
+pgm8.sh
+pgm9.sh
+prg2.sh
+program10.sh
+program2.sh
+program66.sh
+program6.sh
+Do you want to continue [y/n]: y
+REDIRECTION,PIPES,TEE COMMAND
+**********
+1.pipes
+2.Redirection
+3.TEE command
+Enter your choice :2
+Redirection
+This is the text file
+This is the banana
+This is our college
+Welcome to college
+This is information to all
+This is the text file
+Do you want to continue [y/n]: y
+REDIRECTION,PIPES,TEE COMMAND
+**********
+1.pipes
+2.Redirection
+3.TEE command
+Enter your choice :3
+TEE command
+ 9 31 153 file1
+Content of the file after implementing tee
+is text file
+text file
+This is the text file
+This is the banana
+This is our college
+Welcome to college
+This is information to all
+This is the text file
+Do you want to continue [y/n]:
