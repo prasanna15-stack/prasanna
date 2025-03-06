@@ -1,0 +1,19 @@
+rogram 4
+Write a python program to check if the given string is pangram or not.
+Coding
+import string
+def ispangram(str):
+ alphabet = "abcdefghijklmnopqrstuvwxyz"
+ for char in alphabet:
+ if char not in str.lower():
+ return False
+ return True
+string = input("Enter String: ")
+if(ispangram(string) == True):
+ print("The Given String is pangram")
+else:
+ print("The Given String is not pangram")
+Enter String: Computer Technology and Information Technology
+The Given String is not pangram
+Enter String: The five boxing wizards jump quickly
+The Given String is pangram
