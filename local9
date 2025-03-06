@@ -1,0 +1,24 @@
+PROGRAM 9: PALINDROME CHECKING
+AIM:
+To write a shell script for palindrome checking.
+PROGRAM
+clear
+echo "Enter a string:"
+read input
+reverse=""
+len=${#input}
+for(( i=$len-1; i>=0; i-- ))
+do
+reverse="$reverse${input:$i:1}"
+done
+if [ $input == $reverse ]
+then
+echo "$input is palindrome"
+else
+echo "$input is not palindrome"
+fi
+OUTPUT
+Enter a string: madam
+madam is palindrome
+Enter a string: computer
+computer is not palindrome
