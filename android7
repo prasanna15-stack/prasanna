@@ -1,0 +1,14 @@
+Program 7
+Write a python program to combine two lists into a dictionary.
+Coding
+def lists_to_dictionary(keys, values):
+ return dict(zip(keys, values))
+keys = input("Enter the First list:")
+values = input("Enter the Second list:")
+result = lists_to_dictionary(keys, values)
+print("The Elements present in the Dictionary are:")
+print(result)
+Enter the First list:12345
+Enter the Second list: ABCDE
+The Elements present in the Dictionary are:
+{'1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E'}
