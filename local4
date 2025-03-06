@@ -1,0 +1,104 @@
+PROGRAM 4: DISPLAYING OPTIONS
+To write a shell program for displaying current date, username, file listing
+and directories by getting user choice.
+PROGRAM
+echo "DISPLAYING OPTIONS"
+echo "*********************"
+while :
+do
+echo "OPTIONS"
+echo “*********”
+echo "1.Date."
+echo "2.Username."
+echo "3.Listing files and directories."
+echo "4.Listing files and directories with details."
+echo "Enter your choice:"
+read ch
+case $ch in
+1)
+echo "Date"
+date
+;;
+2)
+echo "Username"
+uname -a
+;;
+3)
+echo "Listing files and directories"
+ls -1
+;;
+4)
+echo "Listing files and directories with details"
+ls -l
+;;
+esac
+echo "Do you want to Continue [y/n]:"
+read a
+if [[ $a == "N" || $a == "n" ]]
+then
+echo "Exited"
+exit
+fi
+done
+OUTPUT:
+DISPLAYING OPTIONS
+---------------
+Options
+*********
+1.Date
+2.Username
+3.Listing files and directories
+4.Listing files and directories with details
+Enter your choice :1
+1.Date
+Date:01/01/13
+Do you want to continue [y/n]; Y
+DISPLAYING OPTIONS
+---------------
+Options
+*********
+1.Date
+2.Username
+3.Listing files and directories
+4.Listing files and directories with details
+Enter your choice : 2
+2.Username
+Linux localhost.localdomain 3.10.0-1062.el7.x86_64 #1 SMP Wed Aug 7
+18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+Do you want to continue [y/n]; Y
+DISPLAYING OPTIONS
+---------------
+Options
+*********
+1.Date
+2.Username
+3.Listing files and directories
+4.Listing files and directories with details
+Enter your choice: 3
+3.Listing files and directories
+ file1 filepgm2.sh newfile1.sh newpgm5 newprogram6.sh
+pgm1.sh pgm4.sh pgm6.sh pgm9.sh program2.sh temp.sh
+Do you want to continue [y/n]; Y
+DISPLAYING OPTIONS
+---------------
+Options
+*********
+1.Date
+2.Username
+3.Listing files and directories
+4.Listing files and directories with details
+Enter your choice : 4
+4.Listing files and directories with details
+total 164K
+-rw-rw-r--. 1 ct239 ct239 0 Jan 1 07:28 2
+-rw-rw-r--. 1 ct239 ct239 77 Jan 1 2013 eng.sh
+-rw-rw-r--. 1 ct239 ct239 0 Jan 1 07:28 file
+-rw-rw-r--. 1 ct239 ct239 153 Jan 1 07:27 file1
+-rw-rw-r--. 1 ct239 ct239 99 Jan 1 07:42 file1.sh
+-rw-rw-r--. 1 ct239 ct239 18 Jan 1 07:31 file2
+-rw-rw-r--. 1 ct239 ct239 32 Jan 1 2013 filepgm2.sh
+-rw-rw-r--. 1 ct239 ct239 241 Jan 1 07:22 internal10.sh
+drwxrwxr-x. 2 ct239 ct239 34 Jan 1 2013 new_directory
+-rw-rw-r--. 1 ct239 ct239 0 Jan 1 07:40 newfile1.sh
+-rw-rw-r--. 1 ct239 ct239 1.4K Jan 1 06:07 newpgm1.sh
+-rw-rw-r--. 1 ct239 ct239 0 Jan 1 06:43 newpgm4.sh
