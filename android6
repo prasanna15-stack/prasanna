@@ -1,0 +1,15 @@
+Program 6
+Write a python program to create a list of tuples with the first element
+as the number and second element as the square of the number.
+Coding
+print("List of Tuples")
+def square_of_tuples(n):
+ return [(i, i*i)
+ for i in range(1, n+1)]
+n=int(input("Enter the Number:"))
+result = square_of_tuples(n)
+print(result)
+Output
+List of Tuples
+Enter the Number:6
+[(1, 1), (2, 4), (3, 9), (4, 16), (5, 25), (6, 36)]
