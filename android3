@@ -1,0 +1,28 @@
+Program 3
+Write a python program to implement binary search algorithm.
+Coding
+def binary_search(arr,start,end,target):
+ mid = (start+end)//2
+ if start > end:
+ return -1
+ if arr[mid] < target:
+ return binary_search(arr, mid+1, end, target)
+ elif arr[mid] > target:
+ return binary_search(arr, start, mid-1, target)
+ elif arr[mid] == target:
+ return mid
+arr = [20,30,40,60,80,90]
+print("Enter the number to search: ")
+a = int(input())
+ans = binary_search(arr,0,len(arr)-1 ,a)
+if ans == -1:
+ print("Target Not Found")
+else:
+ print("Target found at index",ans)
+Output
+Enter the number to search:
+30
+Target found at index 1
+Enter the number to search:
+3
+Target Not Found
