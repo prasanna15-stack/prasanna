@@ -1,0 +1,37 @@
+Program 5
+Write a python program to create a list and perform the following
+methods: 1) insert() 2) remove() 3) append() 4) len() 5) pop() 6) clear()
+Coding
+print("\t\t\t\t\t PROGRAM USING LIST METHODS")
+fruits=['apple', 'orange', 'banana', 'mango']
+print("The items in the list fruits are", fruits)
+length = len(fruits)
+print ("The length of the list is:", length)
+string=input("Enter the item to append into the list:")
+fruits.append(string)
+print("The list after appended is:", fruits)
+string=input("Enter the item to remove from the list:")
+fruits.remove(string)
+print("The list after item removed is:", fruits)
+string=input("Enter the item to insert into the list:")
+fruits.insert(0,string)
+print("The list after item insertion is:", fruits)
+string=input("Enter the item to pop up from the list:")
+popelements=fruits.pop(0)
+print("The popup element is:", popelements)
+print("The list after Popup is:", fruits)
+Output
+PROGRAM USING LIST METHODS
+The items in the list fruits are ['apple', 'orange', 'banana', 'mango']
+The length of the list is: 4
+Enter the item to append into the list: jackfruit
+The list after appended is: ['apple', 'orange', 'banana', 'mango',
+'jackfruit']
+Enter the item to remove from the list: jackfruit
+The list after item removed is: ['apple', 'orange', 'banana', 'mango']
+Enter the item to insert into the list: jackfruit
+The list after item insertion is: ['jackfruit', 'apple', 'orange', 'banana',
+'mango']
+Enter the item to pop up from the list: jackfruit
+The popup element is: jackfruit
+The list after Popup is: ['apple', 'orange', 'banana', 'mango']
