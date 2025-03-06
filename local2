@@ -1,0 +1,101 @@
+PROGRAM 2: SYSTEM CONFIGURATION DETAILS
+echo "SYSTEM CONFIGURATION DETAILS"
+echo "**********************************"
+echo "1.Displaying Current user."
+echo "*********************"
+logname
+echo "2.Current shells."
+echo "*************"
+echo $0
+echo "3.Home directory."
+echo "**************"
+echo $HOME
+echo "4.Operating System."
+echo "****************"
+uname -a
+echo "5.kernal name."
+echo "************"
+uname -r
+echo "6.Current Working directories."
+echo "*************************"
+pwd
+echo "7. Number of users."
+echo "****************"
+who -q
+echo "8.Available Shells."
+echo "***************"
+cat /etc/shells
+echo "9.CPU information."
+echo "****************"
+lscpu
+echo "10.Memory information."
+echo "********************"
+free –m
+OUTPUT:
+SYSTEM CONFIGURATION DETAILS
+***************************
+1. Displaying current user
+**************************
+ct239
+2. CURRENT SHELLS
+*****************
+prg2.sh
+3. HOME DIRECTORY
+*****************
+/home/ct239
+4.OPERATING SYSTEMS
+******************
+ Linux localhost.localdomain 3.10.0-1062.el7.x86_64 #1 SMP
+Wed Aug 7 18:08:02 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+5. KERNAL NAME
+**************
+ 3.10.0-1062.el7.x86_64
+6. CURRENT WORKING DIRECTORY
+/home/ct239
+7. NUMBER OF USERS
+******************
+ct239
+# users=1
+8. AVAILABLE USERS
+******************
+prg2.sh: line 26: cat/etc/shells: No such file or directory
+9. CPU INFORMATION
+******************
+Architecture: x86_64
+CPU op-mode(s): 32-bit, 64-bit
+Byte Order: Little Endian
+CPU(s): 4
+On-line CPU(s) list: 0-3
+Thread(s) per core: 2
+Core(s) per socket: 2
+Socket(s): 1
+NUMA node(s): 1
+Vendor ID: GenuineIntel
+CPU family: 6
+Model: 60
+Model name: Intel(R) Core(TM) i3-4150 CPU @ 3.50GHz
+Stepping: 3
+CPU MHz: 910.888
+CPU max MHz: 3500.0000
+CPU min MHz: 800.0000
+BogoMIPS: 6983.99
+Virtualization: VT-x
+L1d cache: 32K
+L1i cache: 32K
+L2 cache: 256K
+L3 cache: 3072K
+NUMA node0 CPU(s): 0-3
+Flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca
+cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx
+pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl
+xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64
+monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1
+sse4_2 movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand
+lahf_lm abm epb ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept
+vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt
+dtherm arat pln pts md_clear spec_ctrl intel_stibp flush_l1d
+10. MEMORY IONFORMATION
+***********************
+ total used free shared buff/cache available
+Mem: 3702 402 2996 41 303 3045
+Swap: 3967 0 3967
