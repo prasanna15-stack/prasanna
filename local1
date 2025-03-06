@@ -1,0 +1,243 @@
+PROGRAM 1: FILE MANIPULATION\
+PROGRAM:
+echo "FILE MANIPULATION"
+echo "********************"
+while :
+do
+echo "Manipulation List"
+echo "***************"
+echo "1.Create."
+echo "2.Display."
+echo "3.Copy."
+echo "4.Move."
+echo "5.Remove."
+echo "6.Compare."
+echo "7.Difference."
+echo "8.Word count."
+echo "9.Split."
+echo "Enter your choice:"
+read ch
+case $ch in
+1)
+echo "Creating file"
+echo "Enter the file name:"
+read filepgm1
+cat $filepgm1
+;;
+2)
+echo "Display file"
+ls
+;;
+3)
+echo "Copying file"
+echo "Enter the file name:"
+read filepgm1
+read filepgm2
+cp $filepgm1 $filepgm2
+echo "File copied"
+;;
+4)
+echo "Moving file"
+echo "Enter the file name:"
+read filepgm1
+read filepgm2
+mv $file1 $file2
+echo "File Moved"
+;;
+5)
+echo "Removing files"
+echo "Enter the file name:"
+read filepgm1
+rm $filepgm1
+echo "File Removed"
+;;
+6)
+echo "Comparing files"
+echo "Enter the file name:"
+read filepgm1
+read filepgm2
+cmp $filepgm1 $filepgm2
+echo "File compared"
+;;
+7)
+echo "Comparing the different files"
+echo "Enter the file name:"
+read filepgm1
+read filepgm2
+diff $filepgm1 $filepgm2
+echo "File differed"
+;;
+8)
+echo "Counting Words"
+echo "Enter the file name:"
+read filepgm1
+read filepgm2
+wc $filepgm1 $filepgm2
+echo "Words counted"
+;;
+9)
+echo "Splitting files"
+echo "Enter the file name:"
+read filepgm1
+split $filepgm1
+echo "File Splitted"
+;;
+esac
+echo "Do you want to continue[Y/N]:"
+read s
+if [[ $s == "N" || $s == "n" ]]
+then
+echo "Exited"
+exit
+fi
+done
+OUTPUT.
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 1
+Read a file
+Enter the file name:
+filepgm1.sh
+kongu arts and science college
+kongu nadu arts and science collge
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 2
+Display file
+ filepgm2.sh newpgm5.sh pgm4.sh program10.sh
+internal10.sh newpgm6.sh pgm5.sh program66.sh new_directory
+newprogram6.sh
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 3
+Copying file
+Enter the file name:
+filepgm1.sh
+filepgm2.sh
+File copied
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 6
+Comparing files
+enter the file name:
+filepgm1.sh
+filepgm2.sh
+filepgm1.sh filepgm2.sh differ: byte 32, line 2
+File comapred
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 7
+Comparing difference files
+Enter the file name:
+filepgm1.sh
+filepgm2.sh
+2c2
+< kongu nadu arts and science collge
+---
+>
+File Differed
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 8
+Counting words
+Enter the file name:
+filepgm1.sh
+filepgm2.sh
+2 11 66 filepgm1.sh
+2 5 32 filepgm2.sh
+4 16 98 total
+Words counted
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 9
+Splitting files
+Enter the file name:
+filepgm1.sh
+File splitted
+Do you want to continue[Y/N]: Y
+Manipulation List
+*****************
+1.Read a file
+2.Display
+3.Copy
+4.Move
+5.Remove
+6.Compare
+7.Difference
+8.Word count
+9.Split
+Enter your choice: 5
+Removing files
+Enter the file name:
+filepgm1.sh
+File removed
+Do you want to continue[Y/N]:N
