@@ -1,0 +1,20 @@
+Program 8
+Write a python program to append text to a file.
+Coding
+def appendfile(fname):
+ f=open(fname,"a+")
+ city=input("Enter the name of the city:")
+ f.write(city+'\n')
+ f.close()
+ f=open(fname,'r')
+ print(f.read())
+ f.close()
+file=input("Enter the name of the file:")
+appendfile(file)
+Output
+Enter the name of the file:citydts.txt
+Enter the name of the city: karnataka
+canada
+mumbai
+kerala
+karnataka
