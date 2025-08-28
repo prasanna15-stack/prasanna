@@ -1,0 +1,70 @@
+To create a webpage layout with frames and tables
+ 
+frame.html <html> 
+<head> 
+<title>Web Page Layout Using Frames and Tables</title> 
+</head> 
+<frameset cols=50%,50%>  
+<frameset rows=40%,60%> 
+<frame  src=list1.html> 
+<frame  src=list2.html> 
+</frameset> 
+<frame  src=tabledts.html> 
+</frameset>   
+</html> 
+ 
+list1.html 
+<Html> 
+<Body bgcolor="green"><H3> LIST OF VEGETABLES </H3> </Body>  
+ <OL> 
+ <LI> TOMATO </LI> 
+ <LI> BEET ROOT </LI> 
+ <LI> CABBAGE </LI>  <LI> BROCCOLI</LI> 
+ <LI> BRINGAL </LI> 
+</OL>  
+</Html> 
+
+list2.html 
+<Html> 
+<Body bgcolor="yellow"><H3>LIST OF FRUITS </H3> </Body> 
+<UL> 
+<LI> APPLE </LI> 
+<LI> ORANGE </LI> 
+<LI> MANGO </LI> 
+<LI> BANANA </LI> 
+<Li> CHERRY </LI> 
+</UL> 
+ 
+tabledts.html 
+ 
+<html> 
+<Body bgcolor="brown"><H3>STUDENT DETAILS </H3> </Body> 
+<table border=1> 
+<tbody> 
+<tr> 
+<th>REG.NO</th> 
+<th>NAME</th> 
+<th>CLASS</th> 
+<th>MARK1</th> 
+<th> MARK2</th> 
+<th>MARK3</th> 
+</tr> 
+<tr> 
+<td>21UCIT001</td> 
+<td> ANU</td> 
+<td>II B.Sc.IT</td> 
+<td>87</td> 
+<td>45</td> 
+<td>78</td> 
+</tr> 
+<tr> 
+<td>21UCIT002</td> 
+<td> ABI</td> 
+<td>II B.Sc.IT</td> 
+<td>97</td> 
+<td>55</td> 
+<td>88</td> 
+</tr> 
+</tbody> 
+</table> 
+</html> 
