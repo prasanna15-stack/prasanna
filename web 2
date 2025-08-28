@@ -1,0 +1,54 @@
+Aim: To create a html file by applying different styles using inline, external and internal stylesheet. 
+
+stylesheet.css <style> 
+h2 {color:maroon; font-size:20pt} hr {color:navy} 
+p {font-size:11pt; margin-left: 15px} a:link {color:green} a:visited {color:yellow} a:hover {color:black} a:active {color:blue} 
+</style> 
+ 
+stylesheet.htm (file name) 
+<head> 
+<link rel="stylesheet" type="text/css" href="stylesheet.css" /> 
+<style type="text/css"> 
+body 
+{ margin-left:200px; background:blue  
+} 
+.container 
+{ 
+text-align:center; 
+} 
+.center_div 
+{ border:1px solid gray; margin-left:auto; margin-right:auto; width:90%; 
+background-color:orange; 
+text-align:center; padding:8px; 
+} li 
+{ 
+text-decoration:line-through; 
+padding:20px; 
+} 
+</style> 
+</head> 
+<body> 
+<div class="container"> 
+<div class="center_div"> 
+<h1>WELCOME TO CASCADING STYLE SHEET!!!!!!</h1> 
+</div> 
+</div> 
+<p style="border-style:dotted solid dashed double"><font color="red">HTML stands for HyperText Markup Language.<br>It is the predominant markup language for creating web pages.<br>  
+HTML is not a programming language, it is a markup language which contains a set of markup tags.<br>HTML tags normally come in pairs like tags. The first tag in a pair is the start tag, the second tag is the end tag (they are also called opening tags and closing tags). 
+The purpose of a web browser is to read HTML documents and display them as web pages.<br> The browser does not display the HTML tags, but uses the tags to interpret the content of the page. 
+HTML elements form the building blocks of all websites.<br>HTML allows images and objects to be embedded and can be used to create interactive forms. <br> </p> </font> 
+<p style="border-style:dotted solid dashed"><font color="orange">HTML STANDS 
+FOR HYPERTEXT MARKUP LANGUAGE.</font></p> 
+<p style="border-style:dotted solid"><font color="darkgreen">XML stands for 
+Extensible Markup Language</font></p> 
+<p style="border-style:dotted"><font color="yellow">CSS stands for Cascading 
+Style Sheet</font></p> 
+<p><H3><center><a href="cd_catalog.xml" target="_blank">CLICK 
+HERE</a></H3></center></p> 
+<H3><U>CSS STYLES</U></H> 
+<UL> 
+<Li> INTERNAL STYLE SHEET </Li> <Li> EXTERNAL STYLE SHEET</Li> 
+<Li>INLINE STYLE SHEET </Li> 
+</UL> 
+</body> 
+</html> 
