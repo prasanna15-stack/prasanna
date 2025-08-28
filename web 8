@@ -1,0 +1,38 @@
+Aim: To create an XML file to store the student details and use stylesheet to displaying the browser. 
+
+Program 
+Studentdetails.xml 
+ 
+<?xml version="1.0" encoding="UTF-8"?> 
+<?xml-stylesheet type="text/css" href="Rule.css"?> 
+<studentdetails> 
+    <heading>Student Personal Details </heading> 
+    <student> 
+        <name>Name -: ARAVIND S</name> 
+        <registernumber>Register Number -: 17UCOT001</registernumber> 
+        <dob>Date of Birth  -: 13.07.1994</dob> 
+        <emailid>Email id -: arvinds@gmail.com</emailid> 
+        <phoneno> Phone Number -: 99663526544 </phoneno> 
+    </student> 
+     <student> 
+        <name>Name -: ARULKUMAR M  s</name> 
+        <registernumber>Register Number -: 17UCOT002</registernumber> 
+        <dob>Date of Birth  -: 22.08.1994</dob> 
+        <emailid>Email id -: arulkumarm@gmail.com</emailid> 
+        <phoneno> Phone Number -: 9988775544 </phoneno> 
+    </student> 
+</studentdetails> 
+ 
+ 
+Rule.css 
+ 
+students {      color: white;      background-color : gray;      width: 100%; 
+}  heading {      color: green;      font-size : 40px; 
+     background-color : powderblue; 
+} 
+ name, registernumber, dob, emailid, phoneno { 
+display : block; color: red;      font-size : 20px; 
+     background-color : blue; 
+      
+}  title {      font-size : 25px;      font-weight : bold; 
+} 
