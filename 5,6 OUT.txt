@@ -1,0 +1,16 @@
+R3#show ip route
+R3#show ip eigrp neighbors
+R3#show ip route eigrp
+R3#show ip eigrp topology
+
+
+
+sh ip int br
+show ip ospf neighbor
+show ip route 
+show ip protocols 
+show ip ospf
+show ip ospf interface
+
+
+
