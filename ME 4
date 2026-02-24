@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+  <title>Expense Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; }
+    .container { max-width: 500px; margin: auto; }
+    input, button { padding: 10px; margin: 5px 0; width: 100%; }
+    ul { list-style: none; padding: 0; }
+    li { background: #f4f4f4; margin: 5px 0; padding: 10px; display: flex; justify-content: space-between; }
+    .total { font-size: 20px; margin-top: 20px; text-align: center; }
+    .delete-btn { background: red; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Expense Tracker</h1>
+    <input type="text" id="desc" placeholder="Expense description">
+    <input type="number" id="amount" placeholder="Amount">
+    <button onclick="addExpense()">Add Expense</button>
+
+    <ul id="expenseList"></ul>
+    <div class="total">Total: ₹<span id="total">0</span></div>
+  </div>
+
+  <script>
+    let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+    let total = expenses.reduce((sum, exp) => sum + exp.amount, 0);
+
+    function addExpense() {
+      const desc = document.getElementById("desc").value;
+      const amount = parseFloat(document.getElementById("amount").value);
+
+      if (desc && amount) {
+        const newExpense = { desc, amount };
+        expenses.push(newExpense);
+        total += amount;
+        saveData();
+        updateUI();
+        document.getElementById("desc").value = "";
+        document.getElementById("amount").value = "";
+      } else {
+        alert("Please enter description and amount!");
+      }
+    }
+
+    function deleteExpense(index) {
+      total -= expenses[index].amount;
+      expenses.splice(index, 1);
+      saveData();
+      updateUI();
+    }
+
+    function updateUI() {
+      const list = document.getElementById("expenseList");
+      list.innerHTML = "";
+      expenses.forEach((exp, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `${exp.desc} <strong>₹${exp.amount}</strong>
+          <button class="delete-btn" onclick="deleteExpense(${index})"><i class="material-icons">delete</i></button>`;
+        list.appendChild(li);
+      });
+      document.getElementById("total").innerText = total;
+    }
+
+    function saveData() {
+      localStorage.setItem("expenses", JSON.stringify(expenses));
+    }
+
+    // Load saved data on startup
+    updateUI();
+  </script>
+</body>
+</html>
+
