@@ -1,0 +1,26 @@
+// 1. Select the database to use (creates it if it doesn't exist)
+use('StudentDB');
+
+// 2. Create a 'students' collection and insert data
+db.students.insertMany([
+  { 
+    name: "Arun", 
+    student_id: "23UCIT001", 
+    major: "Information Technology", 
+    gpa: 9.0 
+  },
+  { 
+    name: "Dinesh", 
+    student_id: "23UCIT012", 
+    major: "Mathematics", 
+    gpa: 8.5
+  }
+  { 
+    name: "Kumar", 
+    student_id: "23UCIT025", 
+    major: "Computer Technology", 
+    gpa: 6
+  }
+]);
+// 3. Verify the data
+db.students.find().pretty();
