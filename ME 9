@@ -1,0 +1,39 @@
+use('StudentDB');
+
+// Insert a single student
+db.students.insertOne({ 
+  student_id: "S103", 
+  name: "Charlie Green", 
+  major: "Physics", 
+  gpa: 3.9 
+});
+
+// Insert multiple students at once
+db.students.insertMany([
+  { student_id: "S104", name: "David White", major: "History", gpa: 2.8 },
+  { student_id: "S105", name: "Eve Black", major: "Biology", gpa: 3.2 }
+]);
+// Find all students
+db.students.find();
+
+// Find a specific student by ID
+db.students.find({ student_id: "S101" });
+
+// Find students with a GPA greater than 3.5
+db.students.find({ gpa: { $gt: 3.5 } });
+// Update one student's GPA
+db.students.updateOne(
+  { student_id: "S102" }, 
+  { $set: { gpa: 3.7 } }
+);
+
+// Update multiple students (e.g., changing a major name)
+db.students.updateMany(
+  { major: "Computer Science" }, 
+  { $set: { department: "Engineering" } }
+);
+// Delete a specific student
+db.students.deleteOne({ student_id: "S104" });
+
+// Delete all students with a GPA below 3.0
+db.students.deleteMany({ gpa: { $lt: 3.0 } });
