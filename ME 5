@@ -1,0 +1,59 @@
+
+// src/Slider.js
+import React, { useState } from "react";
+import "./Slider.css";
+
+const Slider = ({ images }) => {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((index + 1) % images.length);
+  const prev = () => setIndex((index - 1 + images.length) % images.length);
+
+  return (
+    <div className="slider">
+      <button onClick={prev}>❮</button>
+      <img src={images[index]} alt="slide" />
+      <button onClick={next}>❯</button>
+    </div>
+  );
+};
+export default Slider;
+css
+/* src/Slider.css */
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: auto;
+}
+.slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+jsx
+// src/App.js
+import React from "react";
+import Slider from "./Slider";
+
+const images = [
+  "https://picsum.photos/id/1018/800/400",
+  "https://picsum.photos/id/1015/800/400",
+  "https://picsum.photos/id/1019/800/400"
+];
+function App() {
+  return (
+    <div>
+      <h1>Simple Image Slider</h1>
+      <Slider images={images} />
+    </div>
+  );
+}
+export default App;
