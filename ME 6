@@ -1,0 +1,79 @@
+// server.js
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+let startTime = null;
+let elapsed = 0;
+let running = false;
+// Start stopwatch
+app.post("/start", (req, res) => {
+  if (!running) {
+    startTime = Date.now() - elapsed;
+    running = true;
+  }
+  res.json({ running, elapsed });
+});
+// Stop stopwatch
+app.post("/stop", (req, res) => {
+  if (running) {
+    elapsed = Date.now() - startTime;
+    running = false;
+  }
+  res.json({ running, elapsed });
+});
+// Reset stopwatch
+app.post("/reset", (req, res) => {
+  startTime = null;
+  elapsed = 0;
+  running = false;
+  res.json({ running, elapsed });
+});
+// Get current time
+app.get("/time", (req, res) => {
+  if (running) {
+    elapsed = Date.now() - startTime;
+  }
+  res.json({ running, elapsed });
+});
+app.listen(5000, () => console.log("Stopwatch API running on port 5000"));
+
+// src/App.js
+import React, { useState, useEffect } from "react";
+function App() {
+  const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  const fetchTime = async () => {
+    const res = await fetch("http://localhost:5000/time");
+    const data = await res.json();
+    setTime(data.elapsed);
+    setRunning(data.running);
+  };
+  useEffect(() => {
+    const interval = setInterval(fetchTime, 500);
+    return () => clearInterval(interval);
+  }, []);
+  const start = async () => {
+    await fetch("http://localhost:5000/start", { method: "POST" });
+    fetchTime();
+  };
+  const stop = async () => {
+    await fetch("http://localhost:5000/stop", { method: "POST" });
+    fetchTime();
+  };
+  const reset = async () => {
+    await fetch("http://localhost:5000/reset", { method: "POST" });
+    fetchTime();
+  };
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>⏱ Stopwatch</h1>
+      <h2>{(time / 1000).toFixed(2)}s</h2>
+      <button onClick={start} disabled={running}>Start</button>
+      <button onClick={stop} disabled={!running}>Stop</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+export default App;
