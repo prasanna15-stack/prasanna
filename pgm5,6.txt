@@ -1,0 +1,248 @@
+ Build a responsive image slider with react 
+Step 1: Start the Process
+Step 2: Create a new React app using the command “npx create-react-app image-slider”
+Step 3: Create a javascript file containing the slider component
+Step 4: Write the responsive styling code in a css file
+Step 5: Create the App.js file and import the slider component
+Step 6: Run the application using the command “npm start”
+Step 7: Stop the process 
+
+// src/Slider.js
+import React, { useState } from "react";
+import "./Slider.css";
+
+const Slider = ({ images }) => {
+  const [index, setIndex] = useState(0);
+
+  const next = () => setIndex((index + 1) % images.length);
+  const prev = () => setIndex((index - 1 + images.length) % images.length);
+
+  return (
+    <div className="slider">
+      <button onClick={prev}>❮</button>
+      <img src={images[index]} alt="slide" />
+      <button onClick={next}>❯</button>
+    </div>
+  );
+};
+export default Slider;
+css
+/* src/Slider.css */
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 600px;
+  margin: auto;
+}
+.slider img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+jsx
+// src/App.js
+import React from "react";
+import Slider from "./Slider";
+
+const images = [
+  "https://picsum.photos/id/1018/800/400",
+  "https://picsum.photos/id/1015/800/400",
+  "https://picsum.photos/id/1019/800/400"
+];
+function App() {
+  return (
+    <div>
+      <h1>Simple Image Slider</h1>
+      <Slider images={images} />
+    </div>
+  );
+}
+export default App;
+
+6. Create an API for stop watch with react and express 
+Step 1: Start the Process
+Step 2: Create a new React app using the command “npx create-react-app stop-watch”
+Step 3: Create a javascript file containing the start, stop and reset the stopwatch component
+Step 4: Write the responsive styling code in a css file
+Step 5: Create the App.js file that calls the API
+Step 6: Run the application using the command “npm start”
+Step 7: Stop the process 
+
+// server.js
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+let startTime = null;
+let elapsed = 0;
+let running = false;
+// Start stopwatch
+app.post("/start", (req, res) => {
+  if (!running) {
+    startTime = Date.now() - elapsed;
+    running = true;
+  }
+  res.json({ running, elapsed });
+});
+// Stop stopwatch
+app.post("/stop", (req, res) => {
+  if (running) {
+    elapsed = Date.now() - startTime;
+    running = false;
+  }
+  res.json({ running, elapsed });
+});
+// Reset stopwatch
+app.post("/reset", (req, res) => {
+  startTime = null;
+  elapsed = 0;
+  running = false;
+  res.json({ running, elapsed });
+});
+// Get current time
+app.get("/time", (req, res) => {
+  if (running) {
+    elapsed = Date.now() - startTime;
+  }
+  res.json({ running, elapsed });
+});
+app.listen(5000, () => console.log("Stopwatch API running on port 5000"));
+
+
+
+
+// src/App.js
+import React, { useState, useEffect } from "react";
+function App() {
+  const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
+
+  const fetchTime = async () => {
+    const res = await fetch("http://localhost:5000/time");
+    const data = await res.json();
+    setTime(data.elapsed);
+    setRunning(data.running);
+  };
+  useEffect(() => {
+    const interval = setInterval(fetchTime, 500);
+    return () => clearInterval(interval);
+  }, []);
+  const start = async () => {
+    await fetch("http://localhost:5000/start", { method: "POST" });
+    fetchTime();
+  };
+  const stop = async () => {
+    await fetch("http://localhost:5000/stop", { method: "POST" });
+    fetchTime();
+  };
+  const reset = async () => {
+    await fetch("http://localhost:5000/reset", { method: "POST" });
+    fetchTime();
+  };
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>⏱ Stopwatch</h1>
+      <h2>{(time / 1000).toFixed(2)}s</h2>
+      <button onClick={start} disabled={running}>Start</button>
+      <button onClick={stop} disabled={!running}>Stop</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+export default App;
+
+
+steps:
+
+
+1️⃣ Problem I see in your VS Code structure
+
+In your screenshot, server.js is inside the src folder.
+
+That is the problem ❌
+server.js should NOT be inside src for a React project.
+
+Correct structure should be:
+
+STOP-WATCH
+│
+├── node_modules
+├── public
+├── src
+│   ├── App.js
+│   ├── App.css
+│   ├── index.js
+│
+├── server.js   ✅ (MOVE HERE)
+├── package.json
+
+So move server.js outside src.
+
+2️⃣ Install Express and CORS
+
+Open terminal and run:
+
+npm install express cors
+
+3️⃣ Run the backend server
+
+Your React app runs on port 3000
+Your API must run on port 5000
+
+Start the backend server:
+
+node server.js
+
+You should see:
+
+Stopwatch API running on port 5000
+
+4️⃣ Run React app (separate terminal)
+
+Open another terminal and run:
+
+npm start
+
+Now two things should run:
+
+React → http://localhost:3000
+Express API → http://localhost:5000
+5️⃣ Test API manually
+
+Open browser:
+
+http://localhost:5000/time
+
+If it shows:
+
+{"running":false,"elapsed":0}
+
+then API works ✅
+
+6️⃣ Optional small improvement
+
+Add error handling in fetchTime to avoid crash.
+
+const fetchTime = async () => {
+  try {
+    const res = await fetch("http://localhost:5000/time");
+    const data = await res.json();
+    setTime(data.elapsed);
+    setRunning(data.running);
+  } catch (err) {
+    console.log("API error:", err);
+  }
+};
+⭐ Final checklist
+
+✔ server.js outside src
+✔ node server.js running
+✔ React running with npm start
+✔ Express installed

@@ -1,0 +1,149 @@
+7. Create a random quote generator app with react and express 
+Step 1: Start the Process
+Step 2: Create a new React app using the command “npx create-react-app quote-client” and install axios with “npm install axios” command
+Step 3: Create a javascript file containing the quote generator component
+Step 4: Write the express code in server.js file
+Step 5: Create the App.js file and import the quote component and axios
+Step 6: Run the application using the command “npm start”
+Step 7: Stop the process 
+
+// server.js
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+app.use(cors());
+
+const quotes = [
+  "The best way to get started is to quit talking and begin doing.",
+  "Don’t let yesterday take up too much of today.",
+  "It’s not whether you get knocked down, it’s whether you get up.",
+  "If you are working on something exciting, it will keep you motivated.",
+  "Success is not in what you have, but who you are."
+];
+
+app.get("/quote", (req, res) => {
+  const randomIndex = Math.floor(Math.random() * quotes.length);
+  res.json({ quote: quotes[randomIndex] });
+});
+
+const PORT = 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// src/App.js
+import React, { useState } from "react";
+import axios from "axios";
+
+function App() {
+  const [quote, setQuote] = useState("");
+
+  const fetchQuote = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/quote");
+      setQuote(res.data.quote);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Random Quote Generator</h1>
+      <p style={{ fontStyle: "italic" }}>{quote}</p>
+      <button onClick={fetchQuote}>Get Quote</button>
+    </div>
+  );
+}
+
+export default App;
+
+steps:
+
+1️⃣ Create React Project
+
+Open VS Code terminal and run:
+
+npx create-react-app quote-client
+
+Wait until installation finishes.
+
+2️⃣ Go into Project Folder
+cd quote-client
+
+Now your folder structure will look like:
+
+quote-client
+│
+├── node_modules
+├── public
+├── src
+├── package.json
+3️⃣ Install Required Packages
+
+Install axios, express, and cors.
+
+npm install axios express cors
+4️⃣ Create the Backend File
+
+In VS Code Explorer (left side):
+
+Right click quote-client folder → New File
+
+Create:
+
+server.js
+
+⚠️ IMPORTANT:
+server.js must be outside src folder.
+
+Correct structure:
+
+quote-client
+│
+├── node_modules
+├── public
+├── src
+│   ├── App.js
+│   ├── index.js
+│
+├── server.js  ✅
+├── package.json
+5️⃣ Paste the Express Code
+
+Open server.js and paste this:
+
+6️⃣ Update React App.js
+
+Open:
+
+src → App.js
+
+7️⃣ Run Backend Server
+
+Open Terminal 1 and run:
+
+node server.js
+
+You should see:
+
+Server running on port 5000
+8️⃣ Run React App
+
+Open Terminal 2 and run:
+
+npm start
+
+Now browser will open:
+
+http://localhost:3000
+9️⃣ Test the App
+
+Click Get Quote button.
+
+Example output:
+
+Random Quote Generator
+
+"Success is not in what you have, but who you are."
+
+E

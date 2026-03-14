@@ -1,0 +1,1217 @@
+Sri, I’ll explain MERN Login & Registration step-by-step very clearly so you can run it without errors. Just follow the order. 🚀
+
+1️⃣ Install Required Software
+
+Make sure these are installed on your computer:
+
+✔ Node.js
+✔ MongoDB (MongoDB Compass or MongoDB Server)
+✔ VS Code
+
+Check Node:
+
+node -v
+npm -v
+2️⃣ Create Main Project Folder
+
+Create a folder:
+
+mern-login
+
+Open it in VS Code.
+
+3️⃣ Setup Backend (Server)
+
+Open terminal and run:
+
+npm init -y
+
+Install backend packages:
+
+npm install express mongoose cors
+
+Now your folder looks like:
+
+mern-login
+│
+├── node_modules
+├── package.json
+4️⃣ Create Server.js
+
+In the mern-login folder, create a file:
+
+server.js
+
+Paste this code:
+
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+// Connect MongoDB
+mongoose.connect("mongodb://localhost:27017/studentDB")
+.then(()=>console.log("MongoDB connected"))
+.catch(err=>console.log(err));
+
+// User Schema
+const UserSchema = new mongoose.Schema({
+  username: String,
+  email: String,
+  password: String
+});
+
+const User = mongoose.model("User", UserSchema);
+
+// Register API
+app.post("/register", async (req, res) => {
+  const { username, email, password } = req.body;
+  const user = new User({ username, email, password });
+  await user.save();
+  res.send("Registered successfully!");
+});
+
+// Login API
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email, password });
+
+  if (user) {
+    res.send("Login successful!");
+  } else {
+    res.send("Invalid credentials");
+  }
+});
+
+app.listen(5000, () => console.log("Server running on port 5000"));
+
+Save it.
+
+5️⃣ Start Backend Server
+
+Run:
+
+node server.js
+
+You should see:
+
+MongoDB connected
+Server running on port 5000
+6️⃣ Create React Frontend
+
+Open another terminal inside the same folder.
+
+Run:
+
+npx create-react-app client
+
+Go inside client folder:
+
+cd client
+
+Install packages:
+
+npm install axios react-router-dom
+7️⃣ Folder Structure
+
+Inside client/src create 2 files:
+
+Register.js
+Login.js
+
+Structure:
+
+client
+│
+├── src
+│   ├── App.js
+│   ├── Register.js
+│   ├── Login.js
+│
+8️⃣ Add Register.js Code
+
+Paste this:
+
+import React, { useState } from "react";
+import axios from "axios";
+
+function Register() {
+
+  const [form, setForm] = useState({
+    username:"",
+    email:"",
+    password:""
+  });
+
+  const handleChange = (e)=>{
+    setForm({...form,[e.target.name]:e.target.value});
+  }
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+
+    const res = await axios.post("http://localhost:5000/register",form);
+
+    alert(res.data);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Register</h2>
+
+      <input name="username" placeholder="Username" onChange={handleChange}/>
+      <br/>
+
+      <input name="email" type="email" placeholder="Email" onChange={handleChange}/>
+      <br/>
+
+      <input name="password" type="password" placeholder="Password" onChange={handleChange}/>
+      <br/>
+
+      <button type="submit">Register</button>
+    </form>
+  );
+}
+
+export default Register;
+9️⃣ Add Login.js Code
+import React, { useState } from "react";
+import axios from "axios";
+
+function Login() {
+
+  const [form,setForm] = useState({
+    email:"",
+    password:""
+  });
+
+  const handleChange = (e)=>{
+    setForm({...form,[e.target.name]:e.target.value});
+  }
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+
+    const res = await axios.post("http://localhost:5000/login",form);
+
+    alert(res.data);
+  }
+
+  return(
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+
+      <input name="email" type="email" placeholder="Email" onChange={handleChange}/>
+      <br/>
+
+      <input name="password" type="password" placeholder="Password" onChange={handleChange}/>
+      <br/>
+
+      <button type="submit">Login</button>
+    </form>
+  )
+}
+
+export default Login;
+🔟 Update App.js
+
+Open:
+
+src/App.js
+
+Replace with:
+
+import React from "react";
+import {BrowserRouter as Router,Routes,Route} from "react-router-dom";
+
+import Register from "./Register";
+import Login from "./Login";
+
+function App(){
+  return(
+    <Router>
+      <Routes>
+
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+
+      </Routes>
+    </Router>
+  )
+}
+
+export default App;
+1️⃣1️⃣ Run React App
+
+Inside client folder run:
+
+npm start
+
+Browser opens:
+
+http://localhost:3000
+
+Test pages:
+
+Register page:
+
+http://localhost:3000/register
+
+Login page:
+
+http://localhost:3000/login
+1️⃣2️⃣ Full Working Flow
+React Form
+     ↓
+Axios Request
+     ↓
+Express API
+     ↓
+MongoDB Database
+     ↓
+Response Back to React
+⭐ Your Final Folder Structure
+mern-login
+│
+├── server.js
+├── node_modules
+├── package.json
+│
+└── client
+    │
+    ├── src
+    │   ├── App.js
+    │   ├── Register.js
+    │   ├── Login.js
+    │
+    ├── package.json
+
+💡 Sri, if you want, I can also give you a better MERN login project (with password encryption, JWT authentication, and dashboard) — that one looks very strong in interviews and projects.
+
+Sri, the error in your screenshot is very clear 👍
+Your React project cannot find two packages:
+
+react-router-dom
+
+axios
+
+That means they are not installed in the client project.
+
+🔴 Error Explanation
+
+Your errors show:
+
+Can't resolve 'react-router-dom'
+Can't resolve 'axios'
+
+So React cannot run because those libraries are missing.
+
+✅ Fix (Very Easy)
+
+Open VS Code Terminal and go to the client folder.
+
+Step 1
+cd client
+
+Make sure terminal shows something like:
+
+C:\Users\GOKO\mern-login\client>
+Step 2 Install Packages
+
+Run this command:
+
+npm install axios react-router-dom
+
+Wait until installation finishes.
+
+You should see something like:
+
+added 10 packages
+Step 3 Restart React
+
+Now run:
+
+npm start
+✅ After Fix
+
+Your app will open normally.
+
+Test pages:
+
+Register page
+
+http://localhost:3000/register
+
+Login page
+
+http://localhost:3000/login
+⚠️ Important Rule in MERN
+
+Packages must be installed inside the React project (client folder).
+
+Correct location:
+
+mern-login
+│
+├── server.js
+│
+└── client
+     │
+     ├── node_modules
+     ├── src
+     ├── package.json
+
+You must run:
+
+npm install axios react-router-dom
+
+inside client folder.
+
+💡 Sri, if you want, I can also show you 2 important improvements your MERN login project needs (otherwise teachers/interviewers may ask):
+
+Password encryption with bcrypt
+
+JWT authentication login system.
+
+it show blanck
+
+Sri, the blank page is normal in your case — your React app is working, but no route is loaded yet. 👍
+
+Your App.js only has these routes:
+
+/register
+
+/login
+
+But you opened:
+
+http://localhost:3001
+
+So React shows nothing (blank page).
+
+✅ Solution
+
+Open these URLs instead:
+
+Register Page
+http://localhost:3001/register
+Login Page
+http://localhost:3001/login
+
+Then you will see the forms.
+
+⭐ Better Fix (So Home Page Shows Something)
+
+Update App.js like this:
+
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Register from "./Register";
+import Login from "./Login";
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
+
+Now when you open:
+
+http://localhost:3001
+
+it will show Register form instead of blank page.
+
+🔎 Why It Happened
+
+Your routes were:
+
+/register
+/login
+
+But homepage / had no component, so React rendered empty screen.
+
+✅ Sri, if you want, I can also show you how to add:
+
+Navigation buttons (Login / Register switch)
+
+Better UI form
+
+Auto redirect after login
+
+It will make your MERN project look much more professional.
+
+PS C:\Users\GOKO\mern-login> npm start
+
+> mern-login@1.0.0 start
+> node server.js
+
+Server running on port 5000
+C:\Users\GOKO\mern-login\node_modules\mongoose\lib\connection.js:1168
+    err = new ServerSelectionError();
+          ^
+
+MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\GOKO\mern-login\node_modules\mongoose\lib\connection.js:1168:11)
+    at NativeConnection.openUri (C:\Users\GOKO\mern-login\node_modules\mongoose\lib\connection.js:1099:11)
+    at runNextTicks (node:internal/process/task_queues:64:5)
+    at listOnTimeout (node:internal/timers:567:9)
+    at process.processTimers (node:internal/timers:541:7) {
+  errorLabelSet: Set(0) {},
+  reason: TopologyDescription {
+    type: 'Unknown',
+    servers: Map(1) {
+      'localhost:27017' => ServerDescription {
+        address: 'localhost:27017',
+        type: 'Unknown',
+        hosts: [],
+        passives: [],
+        arbiters: [],
+        tags: {},
+        minWireVersion: 0,
+        maxWireVersion: 0,
+        roundTripTime: -1,
+        minRoundTripTime: 0,
+        lastUpdateTime: 31096,
+        lastWriteDate: 0,
+        error: MongoNetworkError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+            at Socket.<anonymous> (C:\Users\GOKO\mern-login\node_modules\mongodb\lib\cmap\connect.js:297:44)
+            at Object.onceWrapper (node:events:623:26)
+            at Socket.emit (node:events:508:28)
+            at emitErrorNT (node:internal/streams/destroy:170:8)
+            at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+            at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+          errorLabelSet: Set(3) {
+            'SystemOverloadedError',
+            'RetryableError',
+            'ResetPool'
+          },
+          beforeHandshake: false,
+          [cause]: AggregateError [ECONNREFUSED]:
+              at internalConnectMultiple (node:net:1134:18)
+              at afterConnectMultiple (node:net:1715:7) {
+            code: 'ECONNREFUSED',
+            [errors]: [Array]
+          }
+        },
+        topologyVersion: null,
+        setName: null,
+        setVersion: null,
+        electionId: null,
+        logicalSessionTimeoutMinutes: null,
+        maxMessageSizeBytes: null,
+        maxWriteBatchSize: null,
+        maxBsonObjectSize: null,
+        primary: null,
+        me: null,
+        '$clusterTime': null,
+        iscryptd: false
+      }
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: null,
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  },
+  code: undefined,
+  cause: TopologyDescription {
+    type: 'Unknown',
+    servers: Map(1) {
+      'localhost:27017' => ServerDescription {
+        address: 'localhost:27017',
+        type: 'Unknown',
+        hosts: [],
+        passives: [],
+        arbiters: [],
+        tags: {},
+        minWireVersion: 0,
+        maxWireVersion: 0,
+        roundTripTime: -1,
+        minRoundTripTime: 0,
+        lastUpdateTime: 31096,
+        lastWriteDate: 0,
+        error: MongoNetworkError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+            at Socket.<anonymous> (C:\Users\GOKO\mern-login\node_modules\mongodb\lib\cmap\connect.js:297:44)
+            at Object.onceWrapper (node:events:623:26)
+            at Socket.emit (node:events:508:28)
+            at emitErrorNT (node:internal/streams/destroy:170:8)
+            at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+            at process.processTicksAndRejections (node:internal/process/task_queues:89:21) {
+          errorLabelSet: Set(3) {
+            'SystemOverloadedError',
+            'RetryableError',
+            'ResetPool'
+          },
+          beforeHandshake: false,
+          [cause]: AggregateError [ECONNREFUSED]:
+              at internalConnectMultiple (node:net:1134:18)
+              at afterConnectMultiple (node:net:1715:7) {
+            code: 'ECONNREFUSED',
+            [errors]: [Array]
+          }
+        },
+        topologyVersion: null,
+        setName: null,
+        setVersion: null,
+        electionId: null,
+        logicalSessionTimeoutMinutes: null,
+        maxMessageSizeBytes: null,
+        maxWriteBatchSize: null,
+        maxBsonObjectSize: null,
+        primary: null,
+        me: null,
+        '$clusterTime': null,
+        iscryptd: false
+      }
+    },
+    stale: false,
+    compatible: true,
+    heartbeatFrequencyMS: 10000,
+    localThresholdMS: 15,
+    setName: null,
+    maxElectionId: null,
+    maxSetVersion: null,
+    commonWireVersion: 0,
+    logicalSessionTimeoutMinutes: null
+  }
+}
+
+Node.js v24.13.1
+
+it show this
+
+Sri, the error message clearly shows the problem:
+
+MongooseServerSelectionError: connect ECONNREFUSED 127.0.0.1:27017
+
+This means MongoDB is not running on your computer, so your Node/Express server cannot connect to the database.
+
+Your code is correct 👍 — the issue is MongoDB service is stopped.
+
+✅ Fix 1 (Most Common) – Start MongoDB
+Step 1
+
+Press Windows key and search:
+
+Services
+
+Open Services app.
+
+Step 2
+
+Find this service:
+
+MongoDB
+Step 3
+
+Right click → Start
+
+Now MongoDB database will run on:
+
+localhost:27017
+✅ Fix 2 – If You Installed MongoDB Compass Only
+
+If you installed MongoDB Compass, open it and connect to:
+
+mongodb://localhost:27017
+
+Click Connect.
+
+✅ Fix 3 – Check if MongoDB is Installed
+
+Run this in terminal:
+
+mongod --version
+
+If it shows version → MongoDB installed ✔
+If command not found → MongoDB not installed ❌
+
+✅ After Starting MongoDB
+
+Run your project again:
+
+npm start
+
+You should now see:
+
+MongoDB connected
+Server running on port 5000
+
+No error will appear.
+
+🔎 Why This Happened
+
+Your server code:
+
+mongoose.connect("mongodb://localhost:27017/studentDB");
+
+This tells Node:
+
+Connect to MongoDB database running on port 27017
+
+But MongoDB was not running, so connection was refused.
+
+⭐ Quick Tip (Best Practice)
+
+Use this improved connection code:
+
+mongoose.connect("mongodb://127.0.0.1:27017/studentDB")
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
+
+💡 Sri, if you want, I can also show you a much easier way to run MongoDB using MongoDB Atlas (cloud database).
+That way you never get this MongoDB connection error again.
+
+mongodb is not there
+
+Got it, Sri 👍 — the error happened because MongoDB is not installed on your computer. Your MERN server is trying to connect to MongoDB, but it doesn't exist yet.
+
+You have two options. I’ll show the easiest first.
+
+⭐ Option 1 (Recommended): Install MongoDB Compass + MongoDB Server
+Step 1 — Download MongoDB
+
+Go to the official site:
+
+https://www.mongodb.com/try/download/community
+
+Download:
+
+MongoDB Community Server
+
+Choose:
+
+Version: Latest
+Platform: Windows
+Package: msi
+
+Download the .msi file.
+
+Step 2 — Install MongoDB
+
+Open the downloaded file.
+
+During installation:
+
+✔ Choose Complete
+✔ Enable Install MongoDB as a Service
+✔ Install MongoDB Compass
+
+Then click Next → Install → Finish.
+
+Step 3 — Start MongoDB
+
+After installation, MongoDB will start automatically.
+
+To check, open terminal and run:
+
+mongod --version
+
+You should see a version number.
+
+Step 4 — Run Your Project Again
+
+Go to your project folder:
+
+cd mern-login
+
+Run server:
+
+npm start
+
+Now it should show:
+
+MongoDB connected
+Server running on port 5000
+⭐ Option 2 (Very Easy): Use MongoDB Atlas (Cloud Database)
+
+You don't install anything.
+
+Steps:
+
+1️⃣ Go to
+https://www.mongodb.com/atlas
+
+2️⃣ Create free account
+
+3️⃣ Create Free Cluster
+
+4️⃣ Copy connection string like:
+
+mongodb+srv://username:password@cluster.mongodb.net/studentDB
+
+5️⃣ Replace in your code:
+
+mongoose.connect("YOUR_CONNECTION_STRING");
+🧠 Why This Error Happened
+
+Your code:
+
+mongoose.connect("mongodb://localhost:27017/studentDB");
+
+This means:
+
+Connect to database running on your computer
+
+But MongoDB was not installed, so Node.js could not connect.
+
+✅ After installing MongoDB, your Login + Register MERN project will work perfectly.
+
+💡 Sri, if you want, I can also give you a full MERN login project with UI + validation + password encryption.
+That version looks much more professional for projects or interviews.
+
+Sri, you’re at the correct MongoDB installation screen 👍
+
+This step is asking which installation type you want.
+
+What you should do
+
+Just select ✅ Complete (the first option).
+
+That will install everything needed for your MERN project.
+
+Then click Next.
+
+Next screens you will see
+
+After clicking Complete → Next, follow these:
+
+1️⃣ Service Configuration
+
+Keep everything default:
+
+Run service as Network Service user
+Service Name: MongoDB
+
+Then click Next.
+
+2️⃣ MongoDB Compass
+
+Make sure this is checked ✅
+
+MongoDB Compass is the GUI to see your database.
+
+Click Next.
+
+3️⃣ Install
+
+Click Install and wait for installation to finish.
+
+After installation
+
+Restart your terminal and check MongoDB:
+
+mongod --version
+
+Then run your project again:
+
+cd mern-login
+npm start
+
+You should see:
+
+MongoDB connected
+Server running on port 5000
+
+💡 Sri, after this step your Login + Register MERN project will fully work.
+
+If you want, I can also show you how to check your users inside MongoDB Compass after registration (very useful for your project demo).
+
+S C:\Users\GOKO\mern-login> mongod --version
+mongod : The term 'mongod' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path 
+is correct and try again.
+At line:1 char:1
++ mongod --version
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongod:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+Sri, don’t worry 👍 this error is very common after installing MongoDB.
+
+The message:
+
+mongod : The term 'mongod' is not recognized
+
+means MongoDB is installed but its path is not added to the Windows Environment Variables.
+
+We can fix it in 2 minutes.
+
+✅ Step 1 — Find MongoDB Installation Folder
+
+Open File Explorer and go to:
+
+C:\Program Files\MongoDB\Server
+
+Inside you will see a version folder like:
+
+8.2
+
+Open it → then open:
+
+bin
+
+Full path will look like:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Copy this path.
+
+✅ Step 2 — Add MongoDB to Environment Variables
+
+Press:
+
+Windows Key + S
+
+Search:
+
+Environment Variables
+
+Open:
+
+Edit the system environment variables
+Then follow:
+
+1️⃣ Click Environment Variables
+
+2️⃣ Under System variables, find:
+
+Path
+
+3️⃣ Click Edit
+
+4️⃣ Click New
+
+5️⃣ Paste this:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+6️⃣ Click OK → OK → OK
+
+✅ Step 3 — Restart Terminal
+
+Close VS Code terminal and open it again.
+
+Now run:
+
+mongod --version
+
+Now it should show something like:
+
+db version v8.2
+✅ Step 4 — Start MongoDB Server
+
+Run:
+
+mongod
+
+Leave that terminal running.
+
+✅ Step 5 — Run Your MERN Server
+
+Open another terminal and run:
+
+cd mern-login
+npm start
+
+Now you should see:
+
+MongoDB connected
+Server running on port 5000
+
+Your Login + Register MERN project will work.
+
+💡 Sri, after this I can also show you how to check registered users inside MongoDB Compass so you can show database output in your project demo.
+
+Sri, you are very close 👍 — the MongoDB path is not added yet. From your screenshot, you opened Environment Variables, but you haven't added the MongoDB bin path.
+
+Follow exactly:
+
+Step 1 — Select System Path
+
+In the bottom section (System variables):
+
+Find:
+
+Path
+
+Click it once.
+
+Then click Edit.
+
+Step 2 — Add MongoDB Path
+
+Click New and paste this path:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Then press:
+
+OK → OK → OK
+Step 3 — Restart Terminal
+
+Close VS Code completely.
+
+Open VS Code again.
+
+Open terminal and run:
+
+mongod --version
+
+Now it should show something like:
+
+db version v8.2
+Step 4 — Start MongoDB
+
+Run:
+
+mongod
+
+Leave that terminal running.
+
+Step 5 — Run Your MERN Server
+
+Open another terminal and run:
+
+cd mern-login
+npm start
+
+Now you should see:
+
+MongoDB connected
+Server running on port 5000
+
+Your Login + Register MERN project will work.
+
+✅ If you want, send one more screenshot after clicking Edit on Path, I will confirm if you added the correct MongoDB path.
+
+system variable not able to edit
+
+Sri, that’s normal 👍 — System variables sometimes need Administrator permission, so you may not be able to edit them.
+
+But no problem. You can add MongoDB to the User Path instead, which works the same.
+
+✅ Use User Variables (Easier)
+
+In the window you showed:
+
+Top section:
+
+User variables for GOKO
+
+You already selected Path there. Good.
+
+Do this:
+
+1️⃣ Select Path (under User variables)
+2️⃣ Click Edit
+
+✅ Add MongoDB Path
+
+Click New and paste:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Then click:
+
+OK → OK → OK
+✅ Restart Terminal
+
+Close:
+
+VS Code
+
+Terminal
+
+Open VS Code again.
+
+Run:
+
+mongod --version
+
+Now it should show:
+
+db version v8.2
+✅ Start MongoDB
+
+Run:
+
+mongod
+
+Leave that terminal running.
+
+✅ Run Your MERN Project
+
+Open another terminal and run:
+
+cd mern-login
+npm start
+
+Now it should show:
+
+MongoDB connected
+Server running on port 5000
+
+Your Login + Register MERN project will work.
+
+💡 Sri, once MongoDB works, I can also show you how to view registered users inside MongoDB Compass so you can demonstrate your database in your project presentation.
+
+PS C:\Users\GOKO\mern-login> mongod --version
+mongod : The term 'mongod' is not recognized as the name of a cmdlet, function, script file, or operable program. 
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ mongod --version
++ ~~~~~~
+    + CategoryInfo          : ObjectNotFound: (mongod:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+Sri, this still means Windows cannot find MongoDB in the PATH. Let’s check it quickly and fix it properly.
+
+Follow this exactly 👇
+
+1️⃣ First check if MongoDB is installed
+
+Open File Explorer and go to:
+
+C:\Program Files\MongoDB\Server
+
+Tell me what folder number you see. Example:
+
+C:\Program Files\MongoDB\Server\8.2
+
+Then open:
+
+bin
+
+Final path should look like:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Inside that folder you should see files like:
+
+mongod.exe
+mongo.exe
+mongos.exe
+
+If you see mongod.exe, MongoDB is installed correctly.
+
+2️⃣ Quick Test (without PATH)
+
+Instead of using PATH, run MongoDB directly.
+
+In terminal run:
+
+"C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe" --version
+
+If it prints version like:
+
+db version v8.2
+
+then MongoDB works.
+
+3️⃣ Start MongoDB manually
+
+Run:
+
+"C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe"
+
+Leave that terminal running.
+
+4️⃣ Run your MERN server
+
+Open another terminal:
+
+cd mern-login
+npm start
+
+Now it should show:
+
+MongoDB connected
+Server running on port 5000
+⭐ After that we will permanently fix PATH
+
+But first confirm one thing for me, Sri:
+
+👉 Open this folder and tell me which version number you see:
+
+C:\Program Files\MongoDB\Server\
+
+Example:
+
+6.0
+7.0
+8.2
+
+Once I know the version, I’ll give you the exact command to fix it in 10 seconds.
+
+Good, Sri 👍 — this screenshot confirms MongoDB is installed correctly because I can see mongod.exe.
+
+So the problem is only the PATH, not MongoDB.
+
+Let’s run it quickly first.
+
+1️⃣ Start MongoDB manually
+
+Click the address bar of that folder (where mongod.exe is).
+
+It will show something like:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Copy that path.
+
+2️⃣ Run MongoDB from terminal
+
+In VS Code terminal, run:
+
+"C:\Program Files\MongoDB\Server\8.2\bin\mongod.exe"
+
+You will see many lines and finally something like:
+
+Waiting for connections on port 27017
+
+That means MongoDB server is running.
+
+Leave that terminal running.
+
+3️⃣ Run your MERN project
+
+Open another terminal and run:
+
+cd mern-login
+npm start
+
+Now it should show:
+
+MongoDB connected
+Server running on port 5000
+
+Your Login / Register MERN app will work.
+
+⭐ Optional (Better way)
+
+Instead of typing long path every time, add this to PATH:
+
+C:\Program Files\MongoDB\Server\8.2\bin
+
+Then you can simply run:
+
+mongod
+
+💡 Sri, after this works, I can also show you how to see the registered users inside MongoDB Compass (very useful when demonstrating your project).

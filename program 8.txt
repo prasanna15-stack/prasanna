@@ -1,0 +1,35 @@
+ Create a MongoDB Student Database 
+
+Step 1: Start the process
+Step 2: Open the command palette (Ctrl+Shift+P)
+Step 3: Search for "MongoDB: Create MongoDB Playground" and press Enter.
+Step 4: Delete the default template and type the code to store student database
+Step 5: Run the MongoDB Playground (Ctrl + Alt + R)
+
+// 1. Select the database (creates if not exists)
+use('StudentDB');
+
+// 2. Insert students
+db.students.insertMany([
+  { 
+    name: "Arun", 
+    student_id: "23UCIT001", 
+    major: "Information Technology", 
+    gpa: 9.0 
+  },
+  { 
+    name: "Dinesh", 
+    student_id: "23UCIT012", 
+    major: "Mathematics", 
+    gpa: 8.5
+  },   // ← comma missing before (now fixed)
+  { 
+    name: "Kumar", 
+    student_id: "23UCIT025", 
+    major: "Computer Technology", 
+    gpa: 6
+  }
+]);
+
+// 3. Show data
+db.students.find().pretty();
